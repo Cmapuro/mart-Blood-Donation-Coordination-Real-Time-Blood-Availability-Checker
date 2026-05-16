@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
+import bloodDonationLogo from '../../assets/image/blooddonation.png'
 
 /**
  * Navbar Component
@@ -74,9 +75,11 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo and Brand */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blood-red rounded-full flex items-center justify-center">
-              <span className="text-white font-bold">🩸</span>
-            </div>
+            <img
+              src={bloodDonationLogo}
+              alt="Blood Donation Logo"
+              className="w-8 h-8 rounded-full object-cover"
+            />
             <span className="hidden sm:inline text-lg font-bold text-blood-red">
               Blood Donation
             </span>
