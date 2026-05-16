@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "hospitalID": 1,
+    "bloodType": "O+",
+    "quantity": 25,
+    "unit": "units",
+    "lastUpdated": "2026-05-15",
+    "expiryDate": "2026-06-15",
+    "status": "Available"
+  },
+  {
+    "id": 2,
+    "hospitalID": 1,
+    "bloodType": "A+",
+    "quantity": 18,
+    "unit": "units",
+    "lastUpdated": "2026-05-14",
+    "expiryDate": "2026-06-14",
+    "status": "Available"
+  },
+  {
+    "id": 3,
+    "hospitalID": 1,
+    "bloodType": "B+",
+    "quantity": 5,
+    "unit": "units",
+    "lastUpdated": "2026-05-15",
+    "expiryDate": "2026-06-15",
+    "status": "Critical"
+  },
+  {
+    "id": 4,
+    "hospitalID": 1,
+    "bloodType": "AB+",
+    "quantity": 0,
+    "unit": "units",
+    "lastUpdated": "2026-05-15",
+    "expiryDate": "2026-06-15",
+    "status": "Unavailable"
+  },
+  {
+    "id": 5,
+    "hospitalID": 2,
+    "bloodType": "O-",
+    "quantity": 15,
+    "unit": "units",
+    "lastUpdated": "2026-05-15",
+    "expiryDate": "2026-06-15",
+    "status": "Available"
+  },
+  {
+    "id": 6,
+    "hospitalID": 2,
+    "bloodType": "A-",
+    "quantity": 12,
+    "unit": "units",
+    "lastUpdated": "2026-05-15",
+    "expiryDate": "2026-06-15",
+    "status": "Available"
+  }
+]

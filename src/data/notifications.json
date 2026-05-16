@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "donorID": "DONOR-123456",
+    "type": "appointment-reminder",
+    "title": "Donation Appointment Reminder",
+    "message": "Your donation appointment is scheduled for tomorrow at 2:00 PM",
+    "date": "2026-05-16",
+    "read": false,
+    "priority": "high"
+  },
+  {
+    "id": 2,
+    "donorID": "DONOR-123456",
+    "type": "donation-successful",
+    "title": "Donation Successful",
+    "message": "Thank you! Your blood donation was successful. Next eligible date: June 16, 2026",
+    "date": "2026-05-15",
+    "read": true,
+    "priority": "normal"
+  },
+  {
+    "id": 3,
+    "donorID": "DONOR-234567",
+    "type": "emergency-request",
+    "title": "Emergency Blood Request",
+    "message": "Your blood type (A+) is urgently needed at Tagum Medical City",
+    "date": "2026-05-14",
+    "read": false,
+    "priority": "critical"
+  },
+  {
+    "id": 4,
+    "donorID": "DONOR-234567",
+    "type": "eligibility-restored",
+    "title": "You Are Now Eligible to Donate",
+    "message": "Your donation eligibility has been restored. Schedule your next appointment!",
+    "date": "2026-05-10",
+    "read": true,
+    "priority": "normal"
+  }
+]
