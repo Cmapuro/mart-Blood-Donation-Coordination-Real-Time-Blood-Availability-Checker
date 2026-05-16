@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PublicLayout from '../../components/layout/PublicLayout'
 import { EmergencyRequestForm } from '../../components/ui/EmergencyRequestForm'
 import { Modal } from '../../components/common/Modal'
+import { LogoMark } from '../../components/common/LogoMark'
 
 /**
  * EmergencyRequestPage Component
@@ -29,7 +30,7 @@ export function EmergencyRequestPage() {
       <section className="bg-red-600 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-4">
-            🚨 Emergency Blood Request
+            Emergency Blood Request
           </h1>
           <p className="text-lg text-red-100">
             Quickly request blood units for emergency situations
@@ -59,21 +60,21 @@ export function EmergencyRequestPage() {
               {/* Guidelines */}
               <div className="card">
                 <h3 className="text-lg font-bold mb-4 text-blood-red">
-                  📋 Guidelines
+                  Guidelines
                 </h3>
                 <ul className="space-y-2 text-sm text-gray-700">
-                  <li>✓ Provide accurate patient information</li>
-                  <li>✓ Specify exact blood type needed</li>
-                  <li>✓ Include urgency level</li>
-                  <li>✓ Provide contact information</li>
-                  <li>✓ Our team will respond within 5 minutes</li>
+                  <li>Provide accurate patient information</li>
+                  <li>Specify exact blood type needed</li>
+                  <li>Include urgency level</li>
+                  <li>Provide contact information</li>
+                  <li>Our team will respond within 5 minutes</li>
                 </ul>
               </div>
 
               {/* Emergency Numbers */}
               <div className="card bg-red-50 border-l-4 border-red-600">
                 <h3 className="text-lg font-bold mb-4 text-red-600">
-                  🔴 Emergency Hotline
+                  Emergency Hotline
                 </h3>
                 <p className="text-sm text-gray-700 mb-2">
                   For immediate assistance:
@@ -89,7 +90,7 @@ export function EmergencyRequestPage() {
               {/* Urgency Levels */}
               <div className="card">
                 <h3 className="text-lg font-bold mb-4 text-blood-red">
-                  ⚡ Urgency Levels
+                  Urgency Levels
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2">
@@ -177,7 +178,7 @@ export function EmergencyRequestPage() {
         confirmText="Close"
       >
         <div className="text-center">
-          <div className="text-5xl mb-4">✅</div>
+          <LogoMark size="lg" className="mx-auto mb-4" alt="Request submitted logo" />
           <h3 className="text-lg font-bold mb-2 text-gray-900">
             Your emergency blood request has been submitted!
           </h3>

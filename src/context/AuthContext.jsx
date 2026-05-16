@@ -11,8 +11,15 @@ export const AuthContext = createContext()
  * @component
  */
 export function AuthProvider({ children }) {
-  // State to store currently authenticated user
-  const [user, setUser] = useState(null)
+  // State to store currently authenticated user (initialize from localStorage)
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem('user')
+      return stored ? JSON.parse(stored) : null
+    } catch (e) {
+      return null
+    }
+  })
 
   // State to track loading during authentication
   const [loading, setLoading] = useState(false)
@@ -45,6 +52,14 @@ export function AuthProvider({ children }) {
         loginTime: new Date(),
       }
 
+      // If someone is already logged in with a different role, prevent cross-login
+      const current = user
+      if (current && current.role && current.role !== role) {
+        const err = new Error(`Already logged in as ${current.role}. Please logout first.`)
+        setError(err.message)
+        throw err
+      }
+
       setUser(userData)
       // Store in localStorage for session persistence
       localStorage.setItem('user', JSON.stringify(userData))
@@ -56,7 +71,7 @@ export function AuthProvider({ children }) {
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [user])
 
   /**
    * Logout function - Clears user data
@@ -87,13 +102,7 @@ export function AuthProvider({ children }) {
     [user]
   )
 
-  // Initialize user from localStorage on mount
-  React.useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      setUser(JSON.parse(storedUser))
-    }
-  }, [])
+  // (Initialization handled synchronously in useState above)
 
   // Context value to be provided
   const value = {

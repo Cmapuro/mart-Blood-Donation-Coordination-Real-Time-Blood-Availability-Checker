@@ -7,8 +7,9 @@ import axios from 'axios'
  */
 
 // Base URL for API requests
-// In production, this would be your actual backend server URL
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api'
+// In Vite, environment variables are exposed via `import.meta.env`.
+// Use `VITE_API_URL` for the API base URL if provided, otherwise fallback to localhost.
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 
 /**
  * Create Axios instance with default configuration

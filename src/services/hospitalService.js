@@ -12,7 +12,17 @@ import hospitalsData from '../data/hospitals.json'
  */
 export const getAllHospitals = async () => {
   try {
-    // Using local dummy data for demonstration
+    // Prefer persisted hospitals in localStorage if present (admin edits)
+    try {
+      const stored = localStorage.getItem('hospitals')
+      if (stored) {
+        return Promise.resolve(JSON.parse(stored))
+      }
+    } catch (e) {
+      // ignore and fall back to bundled data
+    }
+
+    // Fallback to bundled dummy data
     return Promise.resolve(hospitalsData)
   } catch (error) {
     throw error
@@ -26,6 +36,17 @@ export const getAllHospitals = async () => {
  */
 export const getHospitalById = async (hospitalID) => {
   try {
+    try {
+      const stored = localStorage.getItem('hospitals')
+      if (stored) {
+        const list = JSON.parse(stored)
+        const hospital = list.find((h) => h.id === parseInt(hospitalID))
+        return Promise.resolve(hospital)
+      }
+    } catch (e) {
+      // ignore and fall back
+    }
+
     const hospital = hospitalsData.find((h) => h.id === parseInt(hospitalID))
     return Promise.resolve(hospital)
   } catch (error) {

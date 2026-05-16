@@ -25,10 +25,10 @@ function NotificationItem({ notification, onRemove }) {
   }
 
   const icons = {
-    success: '✓',
-    error: '✕',
-    warning: '⚠',
-    info: 'ℹ',
+    success: 'OK',
+    error: 'ERR',
+    warning: 'WARN',
+    info: 'INFO',
   }
 
   const notificationClass = typeClasses[notification.type] || typeClasses.info
@@ -36,15 +36,15 @@ function NotificationItem({ notification, onRemove }) {
 
   return (
     <div className={`flex items-start gap-4 p-4 mb-3 border-l-4 rounded ${notificationClass} animate-slideUp`}>
-      <span className="text-xl font-bold">{icon}</span>
+      <span className="text-xs font-bold uppercase tracking-wide bg-white/70 rounded px-2 py-1">{icon}</span>
       <div className="flex-1">
         <p className="text-sm">{notification.message}</p>
       </div>
       <button
         onClick={() => onRemove(notification.id)}
-        className="text-lg hover:opacity-75 transition"
+        className="text-xs font-semibold hover:opacity-75 transition"
       >
-        ✕
+        Close
       </button>
     </div>
   )

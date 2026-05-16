@@ -5,6 +5,7 @@ import { BloodAvailabilityCard } from '../../components/ui/BloodAvailabilityCard
 import { Loader } from '../../components/common/Loader'
 import bloodInventoryData from '../../data/bloodInventory.json'
 import { BLOOD_TYPES } from '../../utils/bloodTypes'
+import { LogoMark } from '../../components/common/LogoMark'
 
 /**
  * SearchBloodPage Component
@@ -98,7 +99,7 @@ export function SearchBloodPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <div className="text-5xl mb-4">😔</div>
+              <LogoMark size="md" className="mx-auto mb-4" alt="No result logo" />
               <h4 className="text-xl font-semibold text-gray-700 mb-2">
                 No blood units available
               </h4>
@@ -118,24 +119,24 @@ export function SearchBloodPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Donation Compatibility */}
             <div className="card">
-              <h3 className="text-lg font-bold mb-4 text-blood-red">🩸 Who Can Donate?</h3>
+              <h3 className="text-lg font-bold mb-4 text-blood-red">Who Can Donate?</h3>
               <ul className="space-y-2 text-gray-700">
-                <li>✓ O+ & O- can donate to all types (Universal Donors)</li>
-                <li>✓ Age: 16-65 years</li>
-                <li>✓ Weight: At least 50 kg</li>
-                <li>✓ Good health condition</li>
-                <li>✓ No communicable diseases</li>
+                <li>O+ and O- can donate to all types (Universal Donors)</li>
+                <li>Age: 16-65 years</li>
+                <li>Weight: At least 50 kg</li>
+                <li>Good health condition</li>
+                <li>No communicable diseases</li>
               </ul>
             </div>
 
             {/* Recipient Compatibility */}
             <div className="card">
-              <h3 className="text-lg font-bold mb-4 text-blood-red">🏥 Who Can Receive?</h3>
+              <h3 className="text-lg font-bold mb-4 text-blood-red">Who Can Receive?</h3>
               <ul className="space-y-2 text-gray-700">
-                <li>✓ AB+ & AB- can receive from all types (Universal Recipients)</li>
-                <li>✓ O- is emergency blood (safe for all)</li>
-                <li>✓ Always check compatibility before transfusion</li>
-                <li>✓ Regular testing ensures safety</li>
+                <li>AB+ and AB- can receive from all types (Universal Recipients)</li>
+                <li>O- is emergency blood (safe for all)</li>
+                <li>Always check compatibility before transfusion</li>
+                <li>Regular testing ensures safety</li>
               </ul>
             </div>
           </div>

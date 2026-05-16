@@ -20,11 +20,11 @@ export function BloodAvailabilityCard({ blood }) {
     }
   }
 
-  // Quantity status icon
-  const getQuantityIcon = (quantity) => {
-    if (quantity === 0) return '❌'
-    if (quantity < 5) return '⚠️'
-    return '✅'
+  // Quantity status label
+  const getQuantityLabel = (quantity) => {
+    if (quantity === 0) return 'Empty'
+    if (quantity < 5) return 'Low'
+    return 'In stock'
   }
 
   const statusClass = getStatusColor(blood.status)
@@ -56,10 +56,10 @@ export function BloodAvailabilityCard({ blood }) {
         {/* Quantity */}
         <div>
           <p className="text-xs text-gray-500 mb-1">Available Quantity</p>
-          <p className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <span>{getQuantityIcon(blood.quantity)}</span>
+          <p className="text-xl font-bold text-gray-900">
             {blood.quantity} {blood.unit}
           </p>
+          <p className="text-xs text-gray-500 mt-1">{getQuantityLabel(blood.quantity)}</p>
         </div>
 
         {/* Expiry Date */}

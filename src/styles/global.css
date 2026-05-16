@@ -2,6 +2,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
 /* Global Styles for Healthcare-Inspired Blood Donation Platform */
 * {
   margin: 0;
@@ -10,35 +12,81 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Manrope', 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
+  background: linear-gradient(180deg, #fdf2f2 0%, #ffffff 35%, #f8fafc 100%);
+  color: #0f172a;
 }
 
 /* Custom Card Styling */
 .card {
-  @apply bg-white rounded-lg shadow-soft p-6 transition-all duration-300 hover:shadow-medium;
+  @apply bg-white/95 backdrop-blur-sm rounded-2xl shadow-soft p-6 transition-all duration-300 hover:shadow-medium border border-red-100;
 }
 
 /* Button Styling - Professional Healthcare Theme */
 .btn-primary {
-  @apply bg-blood-red hover:bg-blood-dark text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300;
+  @apply bg-gradient-to-r from-blood-red to-rose-500 hover:from-blood-dark hover:to-blood-red text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md;
 }
 
 .btn-secondary {
-  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors duration-300;
+  @apply bg-white hover:bg-red-50 text-gray-700 font-semibold py-2.5 px-5 rounded-xl transition-all duration-300 border border-red-200;
 }
 
 .btn-danger {
   @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300;
 }
 
+/* Small action button used in tables and admin actions */
+.btn-action {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md bg-white/90 text-gray-700 border border-gray-200 hover:bg-white transition-shadow shadow-sm;
+}
+
+.btn-icon {
+  @apply inline-flex items-center justify-center w-9 h-9 rounded-md bg-white/90 text-gray-700 border border-gray-200 hover:bg-white shadow-sm;
+}
+
+/* Sidebar active indicator and icon tones */
+.sidebar-shell {
+  @apply bg-gradient-to-b from-blood-dark via-blood-red to-rose-600 text-white transition-all duration-300 fixed left-0 top-20 z-40 min-h-[calc(100vh-5rem)] overflow-y-auto shadow-2xl border-r border-white/10;
+}
+.sidebar-open {
+  @apply w-72;
+}
+.sidebar-collapsed {
+  @apply w-20;
+}
+.sidebar-top {
+  @apply flex items-center justify-between gap-3 px-4 py-4 border-b border-white/10;
+}
+.sidebar-toggle {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-2xl bg-white/10 hover:bg-white/20 transition-colors border border-white/10;
+}
+.sidebar-menu {
+  @apply space-y-2 px-3 py-4;
+}
+.sidebar-link {
+  @apply relative flex items-center gap-3 px-3 py-3 rounded-lg transition-colors;
+}
+.sidebar-link-active {
+  @apply bg-white/10 text-white shadow-sm;
+}
+.sidebar-bar {
+  @apply absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 rounded-r-md bg-white;
+}
+.sidebar-icon svg {
+  @apply w-5 h-5;
+}
+.sidebar-icon-wrap {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-2xl bg-white/10 border border-white/10 shadow-sm transition-all;
+}
+.sidebar-icon-wrap-active {
+  @apply bg-white text-blood-red border-white/40 shadow-md;
+}
+
 /* Form Styling */
 .form-control {
-  @apply block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-transparent;
+  @apply block w-full px-4 py-2.5 border border-red-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent transition;
 }
 
 /* Input Focus Effect */
@@ -48,7 +96,7 @@ body {
 
 /* Badge Styling */
 .badge {
-  @apply inline-block px-3 py-1 text-xs font-semibold rounded-full;
+  @apply inline-block px-3 py-1 text-xs font-semibold rounded-full tracking-wide;
 }
 
 .badge-blood {
@@ -124,6 +172,14 @@ body {
 /* Responsive Grid */
 .grid-responsive {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.text-badge {
+  @apply inline-flex items-center justify-center min-w-8 h-8 px-2 rounded-lg bg-red-100 text-blood-red text-xs font-bold tracking-wide;
+}
+
+.soft-divider {
+  @apply border-t border-red-100;
 }
 
 /* Loading Skeleton */

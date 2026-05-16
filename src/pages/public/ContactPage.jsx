@@ -57,7 +57,7 @@ export function ContactPage() {
 
                 {submitted && (
                   <div className="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded mb-6">
-                    ✓ Thank you! We'll get back to you soon.
+                    Thank you. We will get back to you soon.
                   </div>
                 )}
 
@@ -134,21 +134,21 @@ export function ContactPage() {
             <div className="space-y-6">
               {/* Phone */}
               <div className="card">
-                <h3 className="text-lg font-bold mb-3 text-blood-red">📞 Phone</h3>
+                <h3 className="text-lg font-bold mb-3 text-blood-red">Phone</h3>
                 <p className="text-gray-700 font-semibold">+63-84-123-4567</p>
                 <p className="text-sm text-gray-600">Available 24/7 for emergencies</p>
               </div>
 
               {/* Email */}
               <div className="card">
-                <h3 className="text-lg font-bold mb-3 text-blood-red">📧 Email</h3>
+                <h3 className="text-lg font-bold mb-3 text-blood-red">Email</h3>
                 <p className="text-gray-700 font-semibold">info@blooddonation.com</p>
                 <p className="text-sm text-gray-600">Response within 24 hours</p>
               </div>
 
               {/* Address */}
               <div className="card">
-                <h3 className="text-lg font-bold mb-3 text-blood-red">📍 Address</h3>
+                <h3 className="text-lg font-bold mb-3 text-blood-red">Address</h3>
                 <p className="text-gray-700 font-semibold">Smart Blood Donation HQ</p>
                 <p className="text-sm text-gray-600">
                   123 Medical Street<br/>
@@ -159,7 +159,7 @@ export function ContactPage() {
 
               {/* Office Hours */}
               <div className="card">
-                <h3 className="text-lg font-bold mb-3 text-blood-red">⏰ Office Hours</h3>
+                <h3 className="text-lg font-bold mb-3 text-blood-red">Office Hours</h3>
                 <ul className="text-sm text-gray-600 space-y-1">
                   <li><span className="font-semibold">Mon - Fri:</span> 8:00 AM - 6:00 PM</li>
                   <li><span className="font-semibold">Saturday:</span> 9:00 AM - 3:00 PM</li>
@@ -169,12 +169,12 @@ export function ContactPage() {
 
               {/* Follow Us */}
               <div className="card">
-                <h3 className="text-lg font-bold mb-3 text-blood-red">🌐 Follow Us</h3>
+                <h3 className="text-lg font-bold mb-3 text-blood-red">Follow Us</h3>
                 <div className="flex gap-3">
-                  <a href="#" className="text-2xl hover:opacity-70">📘</a>
-                  <a href="#" className="text-2xl hover:opacity-70">𝕏</a>
-                  <a href="#" className="text-2xl hover:opacity-70">📷</a>
-                  <a href="#" className="text-2xl hover:opacity-70">▶️</a>
+                  <a href="#" className="badge badge-blood hover:opacity-80">Facebook</a>
+                  <a href="#" className="badge badge-blood hover:opacity-80">X</a>
+                  <a href="#" className="badge badge-blood hover:opacity-80">Instagram</a>
+                  <a href="#" className="badge badge-blood hover:opacity-80">YouTube</a>
                 </div>
               </div>
             </div>

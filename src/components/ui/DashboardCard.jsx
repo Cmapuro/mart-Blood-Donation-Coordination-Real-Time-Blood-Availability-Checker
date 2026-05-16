@@ -1,4 +1,5 @@
 import React from 'react'
+import { LogoMark } from '../common/LogoMark'
 
 /**
  * DashboardCard Component
@@ -8,7 +9,7 @@ import React from 'react'
 export function DashboardCard({
   title = '',
   value = '0',
-  icon = '📊',
+  icon = 'ST',
   trend = null,
   color = 'blood-red',
   onClick,
@@ -28,23 +29,23 @@ export function DashboardCard({
       onClick={onClick}
       className={`${bgClass} card cursor-pointer hover:shadow-medium transition-shadow`}
     >
-      {/* Header with Icon and Title */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-center justify-between mb-4">
         <div>
           <p className="text-sm text-gray-600 font-medium">{title}</p>
-          <h3 className="text-3xl font-bold text-gray-900 mt-2">{value}</h3>
+          <h3 className="text-3xl font-extrabold text-gray-900 mt-2 tracking-tight">{value}</h3>
         </div>
-        <div className="text-3xl">{icon}</div>
+        <div className="flex flex-col items-end">
+          <LogoMark size="md" rounded="rounded-lg" className="border border-red-100 mb-2" alt={`${title} logo`} />
+          {trend && (
+            <div className={`text-sm font-semibold ${trend.direction === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+              {trend.direction === 'up' ? '▲' : '▼'} {trend.percentage}%
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Trend Indicator */}
-      {trend && (
-        <div className={`text-sm font-semibold ${
-          trend.direction === 'up' ? 'text-green-600' : 'text-red-600'
-        }`}>
-          {trend.direction === 'up' ? '↑' : '↓'} {trend.percentage}% from last month
-        </div>
-      )}
+      {/** optional description area */}
+      {onClick && <div className="text-sm text-gray-600 mt-2">Click for details</div>}
     </div>
   )
 }

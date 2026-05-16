@@ -2,6 +2,9 @@ import React from 'react'
 import PublicLayout from '../../components/layout/PublicLayout'
 import { HospitalCard } from '../../components/ui/HospitalCard'
 import hospitalsData from '../../data/hospitals.json'
+import hospitalService from '../../services/hospitalService'
+import { useEffect, useState } from 'react'
+import { LogoMark } from '../../components/common/LogoMark'
 
 /**
  * HospitalListPage Component
@@ -9,6 +12,36 @@ import hospitalsData from '../../data/hospitals.json'
  * Features: hospital cards with details, responsive grid layout
  */
 export function HospitalListPage() {
+  const [hospitals, setHospitals] = useState([])
+
+  useEffect(() => {
+    let mounted = true
+
+    const load = async () => {
+      try {
+        const list = await hospitalService.getAllHospitals()
+        if (mounted) setHospitals(list || [])
+      } catch (e) {
+        if (mounted) setHospitals(hospitalsData)
+      }
+    }
+
+    load()
+
+    const handleUpdate = (e) => {
+      const updated = e?.detail?.hospitals
+      if (updated) setHospitals(updated)
+      else load()
+    }
+
+    window.addEventListener('hospitals-updated', handleUpdate)
+
+    return () => {
+      mounted = false
+      window.removeEventListener('hospitals-updated', handleUpdate)
+    }
+  }, [])
+
   return (
     <PublicLayout>
       {/* Header */}
@@ -29,7 +62,7 @@ export function HospitalListPage() {
           {/* Summary */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              {hospitalsData.length} Partner Facilities
+              {hospitals.length} Partner Facilities
             </h2>
             <p className="text-gray-600">
               All hospitals and blood centers are verified and accredited partners
@@ -38,14 +71,11 @@ export function HospitalListPage() {
 
           {/* Hospital Cards Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {hospitalsData.map((hospital) => (
+            {hospitals.map((hospital) => (
               <HospitalCard
                 key={hospital.id}
                 hospital={hospital}
-                onClick={() => {
-                  // Handle hospital card click
-                  console.log('Hospital clicked:', hospital)
-                }}
+                onClick={() => console.log('Hospital clicked:', hospital)}
               />
             ))}
           </div>
@@ -60,7 +90,7 @@ export function HospitalListPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Hospitals */}
             <div className="card text-center">
-              <div className="text-5xl mb-4">🏥</div>
+              <LogoMark size="md" className="mx-auto mb-4" alt="Category logo" />
               <h3 className="text-xl font-bold mb-2">General Hospitals</h3>
               <p className="text-gray-600">
                 Full-service hospitals with complete blood banking facilities
@@ -70,7 +100,7 @@ export function HospitalListPage() {
 
             {/* Specialist Hospitals */}
             <div className="card text-center">
-              <div className="text-5xl mb-4">👨‍⚕️</div>
+              <LogoMark size="md" className="mx-auto mb-4" alt="Category logo" />
               <h3 className="text-xl font-bold mb-2">Specialist Centers</h3>
               <p className="text-gray-600">
                 Specialized medical centers with specialized blood services
@@ -80,7 +110,7 @@ export function HospitalListPage() {
 
             {/* Blood Banks */}
             <div className="card text-center">
-              <div className="text-5xl mb-4">🩸</div>
+              <LogoMark size="md" className="mx-auto mb-4" alt="Category logo" />
               <h3 className="text-xl font-bold mb-2">Blood Centers</h3>
               <p className="text-gray-600">
                 Dedicated blood collection and distribution centers

@@ -4,6 +4,7 @@ import { AppointmentForm } from '../../components/ui/AppointmentForm'
 import { Loader } from '../../components/common/Loader'
 import { Modal } from '../../components/common/Modal'
 import hospitalsData from '../../data/hospitals.json'
+import { LogoMark } from '../../components/common/LogoMark'
 
 /**
  * ScheduleAppointmentPage Component
@@ -44,7 +45,7 @@ export function ScheduleAppointmentPage() {
         confirmText="Close"
       >
         <div className="text-center">
-          <div className="text-5xl mb-4">✅</div>
+          <LogoMark size="lg" className="mx-auto mb-4" alt="Appointment confirmed logo" />
           <h3 className="text-lg font-bold mb-2">Appointment Confirmed!</h3>
           <p className="text-gray-600">You will receive a confirmation via email and SMS.</p>
         </div>

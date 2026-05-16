@@ -4,6 +4,7 @@ import PublicLayout from '../../components/layout/PublicLayout'
 import { useContext } from 'react'
 import { NotificationContext } from '../../context/NotificationContext'
 import { generateDonorID } from '../../utils/generateDonorID'
+import { Modal } from '../../components/common/Modal'
 import { validateEmail, validatePassword, validatePhone, validateName, validateAge } from '../../utils/validators'
 import { BLOOD_TYPES } from '../../utils/bloodTypes'
 
@@ -35,10 +36,17 @@ export function DonorRegistrationPage() {
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [generatedDonorID, setGeneratedDonorID] = useState(null)
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false)
 
   // Handle change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
+    // If the user is checking the agreeTerms box, show the privacy modal first
+    if (name === 'agreeTerms' && type === 'checkbox' && checked) {
+      setShowPrivacyModal(true)
+      return
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
@@ -324,6 +332,40 @@ export function DonorRegistrationPage() {
           </div>
         </div>
       </section>
+
+      <Modal
+        isOpen={showPrivacyModal}
+        title="Privacy Notice — Data Privacy Act (Philippines)"
+        onClose={() => setShowPrivacyModal(false)}
+        onConfirm={() => {
+          // user accepted the privacy notice
+          setFormData((prev) => ({ ...prev, agreeTerms: true }))
+          setShowPrivacyModal(false)
+        }}
+        confirmText="I accept"
+        cancelText="Cancel"
+      >
+        <div className="text-sm text-gray-700 space-y-3">
+          <p>
+            We collect and process your personal information for the purpose of registering and managing your blood donation records. Your data will be used only for legitimate health and donation-related activities, such as appointment scheduling, donor identification, and emergency notifications.
+          </p>
+          <p>
+            We implement reasonable administrative, technical, and physical safeguards to protect your personal information against unauthorized access, alteration, or disclosure. Only authorized personnel and partner hospitals will have access to the data necessary to perform their duties.
+          </p>
+          <p>
+            You have the right to access, correct, or request deletion of your personal information in accordance with the Data Privacy Act of 2012. To exercise these rights, please contact our data protection officer or reach out through the provided support channels.
+          </p>
+          <p>
+            We retain personal information only for as long as necessary to fulfill the purposes for which it was collected, or as required by law. When your data is no longer needed, we will securely dispose of or anonymize it.
+          </p>
+          <p>
+            By accepting, you consent to the processing of your personal information under the terms described above. You may withdraw consent at any time, subject to legal or contractual restrictions and reasonable notice.
+          </p>
+          <p>
+            For more information about how we handle personal data, or to submit a privacy request, please consult our full Privacy Policy or contact our Data Protection Officer at the email address listed in the footer.
+          </p>
+        </div>
+      </Modal>
     </PublicLayout>
   )
 }

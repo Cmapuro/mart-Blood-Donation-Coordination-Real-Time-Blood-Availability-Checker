@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import HospitalLayout from '../../components/layout/HospitalLayout'
 import { EmergencyRequestForm } from '../../components/ui/EmergencyRequestForm'
 import { Modal } from '../../components/common/Modal'
+import { LogoMark } from '../../components/common/LogoMark'
 
 /**
  * EmergencyBroadcastPage Component
@@ -33,7 +34,7 @@ export function EmergencyBroadcastPage() {
         onConfirm={() => setShowConfirm(false)}
       >
         <div className="text-center">
-          <div className="text-5xl mb-4">✅</div>
+          <LogoMark size="lg" className="mx-auto mb-4" alt="Broadcast success logo" />
           <p className="text-gray-600">Your emergency request has been sent to all eligible donors.</p>
         </div>
       </Modal>

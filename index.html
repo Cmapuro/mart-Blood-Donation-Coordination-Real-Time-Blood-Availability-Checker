@@ -7,6 +7,28 @@
 </head>
 <body>
     <div id="root"></div>
+        <script>
+            // Global error handlers to surface fatal errors (including module import/runtime errors)
+            window.addEventListener('error', function (ev) {
+                try {
+                    var msg = ev.error ? (ev.error.stack || ev.error.message || String(ev.error)) : ev.message || 'Error'
+                    document.body.innerHTML = '<div style="padding:24px;background:#fff;color:#2b0303;font-family:system-ui,Segoe UI, Roboto, Arial"><h2 style="color:#b91c1c">Application Error</h2><pre style="white-space:pre-wrap">'+msg+'</pre></div>'
+                } catch (e) {
+                    console.error('Error rendering global error overlay', e)
+                }
+                console.error(ev.error || ev.message, ev)
+            })
+
+            window.addEventListener('unhandledrejection', function (ev) {
+                try {
+                    var msg = ev.reason ? (ev.reason.stack || ev.reason.message || String(ev.reason)) : 'Unhandled Rejection'
+                    document.body.innerHTML = '<div style="padding:24px;background:#fff;color:#2b0303;font-family:system-ui,Segoe UI, Roboto, Arial"><h2 style="color:#b91c1c">Unhandled Promise Rejection</h2><pre style="white-space:pre-wrap">'+msg+'</pre></div>'
+                } catch (e) {
+                    console.error('Error rendering rejection overlay', e)
+                }
+                console.error('unhandledrejection', ev.reason)
+            })
+        </script>
     <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

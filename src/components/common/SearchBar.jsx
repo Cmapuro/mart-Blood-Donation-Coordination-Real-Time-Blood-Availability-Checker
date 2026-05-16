@@ -38,8 +38,8 @@ export function SearchBar({
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <div className="relative">
-        <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-          🔍
+        <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xs font-semibold text-gray-500">
+          FIND
         </div>
         <input
           type="text"
@@ -52,10 +52,10 @@ export function SearchBar({
           <button
             type="button"
             onClick={handleClear}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs font-semibold text-gray-500 hover:text-gray-700"
             title="Clear search"
           >
-            ✕
+            Clear
           </button>
         )}
       </div>

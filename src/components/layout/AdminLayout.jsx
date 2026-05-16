@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar } from '../common/Navbar'
 import { Sidebar } from '../common/Sidebar'
 import { Footer } from '../common/Footer'
@@ -10,6 +10,29 @@ import { NotificationAlert } from '../common/NotificationAlert'
  * Includes: Navbar, Sidebar, Footer, NotificationAlert
  */
 export function AdminLayout({ children }) {
+  const [sidebarWidth, setSidebarWidth] = useState(() => {
+    try {
+      return window.innerWidth < 768 ? 0 : 288
+    } catch (e) {
+      return 288
+    }
+  })
+
+  useEffect(() => {
+    const handleSidebarWidth = (event) => {
+      const nextWidth = event?.detail?.width
+      if (typeof nextWidth === 'number') {
+        setSidebarWidth(nextWidth)
+      }
+    }
+
+    window.addEventListener('admin-sidebar-width', handleSidebarWidth)
+
+    return () => {
+      window.removeEventListener('admin-sidebar-width', handleSidebarWidth)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
@@ -24,15 +47,25 @@ export function AdminLayout({ children }) {
         <Sidebar />
 
         {/* Main Content Area */}
-        <main className="flex-1 ml-20 md:ml-64">
-          <div className="p-6 max-w-7xl mx-auto">
+        <main
+          className="flex-1 transition-all"
+          style={{ marginLeft: sidebarWidth }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             {children}
           </div>
         </main>
       </div>
 
       {/* Footer */}
-      <Footer />
+      <div
+        style={{
+          marginLeft: sidebarWidth,
+          width: sidebarWidth ? `calc(100% - ${sidebarWidth}px)` : '100%',
+        }}
+      >
+        <Footer />
+      </div>
     </div>
   )
 }

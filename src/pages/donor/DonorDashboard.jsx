@@ -25,20 +25,20 @@ export function DonorDashboard() {
         <DashboardCard
           title="Total Donations"
           value="5"
-          icon="🩸"
+          icon="DN"
           trend={{ direction: 'up', percentage: 20 }}
           color="blood-red"
         />
         <DashboardCard
           title="Lives Saved"
           value="15"
-          icon="❤️"
+          icon="LS"
           color="green"
         />
         <DashboardCard
           title="Next Eligible Date"
           value="June 20"
-          icon="📅"
+          icon="DT"
           color="blue"
         />
       </div>

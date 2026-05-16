@@ -15,9 +15,9 @@ export function HospitalDashboard() {
       <p className="text-gray-600 mb-8">Blood inventory and donation overview</p>
 
       <div className="grid-responsive mb-12">
-        <DashboardCard title="Total Blood Units" value="75" icon="🩸" color="blood-red" />
-        <DashboardCard title="Requests Today" value="12" icon="🚨" color="blue" />
-        <DashboardCard title="Critical Blood Types" value="3" icon="⚠️" color="yellow" />
+        <DashboardCard title="Total Blood Units" value="75" icon="BU" color="blood-red" />
+        <DashboardCard title="Requests Today" value="12" icon="RQ" color="blue" />
+        <DashboardCard title="Critical Blood Types" value="3" icon="CT" color="yellow" />
       </div>
 
       <h2 className="text-2xl font-bold mb-6 text-gray-900">Blood Inventory</h2>

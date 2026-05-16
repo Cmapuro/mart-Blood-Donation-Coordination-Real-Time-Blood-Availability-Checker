@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import PublicLayout from '../../components/layout/PublicLayout'
 import { useAuth } from '../../hooks/useAuth'
 import { useContext } from 'react'
 import { NotificationContext } from '../../context/NotificationContext'
+import { LogoMark } from '../../components/common/LogoMark'
 
 /**
  * HospitalLoginPage Component
@@ -11,7 +12,13 @@ import { NotificationContext } from '../../context/NotificationContext'
  */
 export function HospitalLoginPage() {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const { login, isAuthenticated, user } = useAuth()
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate(`/${user?.role}/dashboard`)
+    }
+  }, [isAuthenticated, user, navigate])
   const { success, error } = useContext(NotificationContext)
 
   const [formData, setFormData] = useState({
@@ -53,13 +60,13 @@ export function HospitalLoginPage() {
 
   return (
     <PublicLayout>
-      <section className="min-h-screen bg-gradient-to-r from-blood-red to-blood-dark flex items-center">
-        <div className="w-full px-4">
-          <div className="max-w-md mx-auto">
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <div className="text-center mb-8">
+      <section className="min-h-screen bg-gradient-to-r from-blood-red to-blood-dark flex items-center justify-center py-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-md mx-auto">
+            <div className="w-full bg-white rounded-lg shadow-lg p-6 sm:p-8">
+              <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-blood-light rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🏥</span>
+                  <LogoMark size="md" className="border border-red-100" alt="Hospital login logo" />
                 </div>
                 <h1 className="text-2xl font-bold text-gray-900">Hospital Login</h1>
                 <p className="text-gray-600 text-sm mt-2">Sign in to your hospital account</p>

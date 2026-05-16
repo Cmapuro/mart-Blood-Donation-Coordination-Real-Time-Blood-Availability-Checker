@@ -103,7 +103,7 @@ export function TableComponent({
                   <div className="flex items-center justify-between">
                     {col.label}
                     {col.sortable && sortColumn === col.key && (
-                      <span>{sortDirection === 'asc' ? '↑' : '↓'}</span>
+                      <span className="text-xs">{sortDirection === 'asc' ? 'ASC' : 'DESC'}</span>
                     )}
                   </div>
                 </th>
@@ -130,7 +130,7 @@ export function TableComponent({
                   ))}
                   {actions.length > 0 && (
                     <td>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 items-center">
                         {actions.map((action) => (
                           <button
                             key={action.label}
@@ -138,13 +138,11 @@ export function TableComponent({
                               e.stopPropagation()
                               action.onClick(row)
                             }}
-                            className={`text-xs px-2 py-1 rounded transition ${
-                              action.variant === 'danger'
-                                ? 'bg-red-100 text-red-600 hover:bg-red-200'
-                                : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
-                            }`}
+                            title={action.label}
+                            className={`btn-action ${action.className || ''} ${action.variant === 'danger' ? 'text-red-600 border-red-100' : ''}`}
                           >
-                            {action.label}
+                            {action.icon && <span className="inline-block">{action.icon}</span>}
+                            <span className="hidden sm:inline">{action.label}</span>
                           </button>
                         ))}
                       </div>

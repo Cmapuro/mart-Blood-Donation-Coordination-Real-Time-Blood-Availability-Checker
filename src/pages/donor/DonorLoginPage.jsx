@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import PublicLayout from '../../components/layout/PublicLayout'
 import { useAuth } from '../../hooks/useAuth'
 import { useContext } from 'react'
 import { NotificationContext } from '../../context/NotificationContext'
+import { LogoMark } from '../../components/common/LogoMark'
 
 /**
  * DonorLoginPage Component
@@ -15,7 +16,14 @@ export function DonorLoginPage() {
   const navigate = useNavigate()
 
   // Auth context
-  const { login } = useAuth()
+  const { login, isAuthenticated, user } = useAuth()
+
+  // If already authenticated, redirect to the correct dashboard
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate(`/${user?.role}/dashboard`)
+    }
+  }, [isAuthenticated, user, navigate])
 
   // Notification context
   const { success, error } = useContext(NotificationContext)
@@ -74,15 +82,15 @@ export function DonorLoginPage() {
 
   return (
     <PublicLayout>
-      <section className="min-h-screen bg-gradient-to-r from-blood-red to-blood-dark flex items-center">
+      <section className="min-h-screen bg-gradient-to-r from-blood-red to-blood-dark flex items-center justify-center py-8">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="max-w-md mx-auto">
+          <div className="w-full max-w-md mx-auto">
             {/* Card */}
-            <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="w-full bg-white rounded-lg shadow-lg p-6 sm:p-8">
               {/* Header */}
               <div className="text-center mb-8">
                 <div className="w-16 h-16 bg-blood-light rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🩸</span>
+                  <LogoMark size="md" className="border border-red-100" alt="Donor login logo" />
                 </div>
                 <h1 className="text-2xl font-bold text-gray-900">Donor Login</h1>
                 <p className="text-gray-600 text-sm mt-2">
@@ -98,7 +106,7 @@ export function DonorLoginPage() {
               )}
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Email */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -143,11 +151,7 @@ export function DonorLoginPage() {
                 </div>
 
                 {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="btn-primary w-full"
-                >
+                <button type="submit" disabled={isLoading} className="btn-primary w-full">
                   {isLoading ? 'Signing in...' : 'Sign In'}
                 </button>
               </form>
