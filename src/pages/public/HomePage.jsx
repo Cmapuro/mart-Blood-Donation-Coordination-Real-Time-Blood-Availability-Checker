@@ -137,7 +137,7 @@ export function HomePage() {
               <LogoMark
                 size="xl"
                 rounded="rounded-3xl"
-                className="mx-auto border-2 border-white/30 bg-white/10 p-4 w-48 h-48"
+                className="mx-auto border-2 border-white/20 bg-white/20 p-4 w-80 h-80 shadow-lg"
                 alt="Hero logo"
               />
             </div>
