@@ -25,6 +25,12 @@ export function SearchBloodPage() {
     filteredData = filteredData.filter((item) => item.bloodType === selectedBloodType)
   }
 
+  if (searchQuery) {
+    filteredData = filteredData.filter((item) =>
+      item.hospitalName.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  }
+
   return (
     <PublicLayout>
       {/* Header */}

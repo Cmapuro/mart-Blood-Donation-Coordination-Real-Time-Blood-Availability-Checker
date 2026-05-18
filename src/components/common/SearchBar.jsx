@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 /**
  * SearchBar Component
@@ -13,40 +13,37 @@ export function SearchBar({
   onSearch,
 }) {
   // Local state for input value
-  const [searchValue, setSearchValue] = useState(value)
+  const [searchValue, setSearchValue] = useState(value);
 
   // Handle input change
   const handleChange = (e) => {
-    const newValue = e.target.value
-    setSearchValue(newValue)
-    onChange?.(newValue)
-  }
+    const newValue = e.target.value;
+    setSearchValue(newValue);
+    onChange?.(newValue);
+  };
 
   // Handle clear button
   const handleClear = () => {
-    setSearchValue('')
-    onClear?.()
-    onChange?.('')
-  }
+    setSearchValue('');
+    onClear?.();
+    onChange?.('');
+  };
 
   // Handle search submit
   const handleSubmit = (e) => {
-    e.preventDefault()
-    onSearch?.(searchValue)
-  }
+    e.preventDefault();
+    onSearch?.(searchValue);
+  };
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <div className="relative">
-        <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xs font-semibold text-gray-500">
-          FIND
-        </div>
         <input
           type="text"
           value={searchValue}
           onChange={handleChange}
           placeholder={placeholder}
-          className="form-control pl-10 pr-10 w-full"
+          className="form-control pr-10 w-full"
         />
         {searchValue && (
           <button
@@ -60,7 +57,7 @@ export function SearchBar({
         )}
       </div>
     </form>
-  )
+  );
 }
 
-export default SearchBar
+export default SearchBar;
