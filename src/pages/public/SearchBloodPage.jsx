@@ -4,6 +4,7 @@ import { SearchBar } from '../../components/common/SearchBar'
 import { BloodAvailabilityCard } from '../../components/ui/BloodAvailabilityCard'
 import { Loader } from '../../components/common/Loader'
 import bloodInventoryData from '../../data/bloodInventory.json'
+import hospitalsData from '../../data/hospitals.json'
 import { BLOOD_TYPES } from '../../utils/bloodTypes'
 import { LogoMark } from '../../components/common/LogoMark'
 
@@ -18,16 +19,26 @@ export function SearchBloodPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
+  // Combine blood inventory with hospital names
+  const combinedData = bloodInventoryData.map((item) => {
+    const hospital = hospitalsData.find((h) => h.id === item.hospitalID)
+    return {
+      ...item,
+      hospitalName: hospital?.name || 'Unknown Hospital',
+    }
+  })
+
   // Filter blood data
-  let filteredData = bloodInventoryData
+  let filteredData = combinedData
 
   if (selectedBloodType) {
     filteredData = filteredData.filter((item) => item.bloodType === selectedBloodType)
   }
 
   if (searchQuery) {
+    const q = searchQuery.toLowerCase()
     filteredData = filteredData.filter((item) =>
-      item.hospitalName.toLowerCase().includes(searchQuery.toLowerCase())
+      (item.hospitalName || '').toLowerCase().includes(q)
     )
   }
 
